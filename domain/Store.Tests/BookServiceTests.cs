@@ -11,10 +11,10 @@ namespace Store.Tests
             var bookRepositoryStub = new Mock<IBookRepository>();
 
             bookRepositoryStub.Setup(x => x.GetAllByIsbn(It.IsAny<string>()))
-                .Returns(new[] { new Book(1, "", "", "") });
+                .Returns(new[] { new Book(1, "", "", "", "", 100m) });
 
             bookRepositoryStub.Setup(x => x.GetAllByTitleOrAuthor(It.IsAny<string>()))
-                .Returns(new[] { new Book(2, "", "", "") });
+                .Returns(new[] { new Book(2, "", "", "", "", 100m) });
 
             var bookService = new BookService(bookRepositoryStub.Object);
             var validIsbn = "ISBN 12345-67890";
@@ -30,10 +30,10 @@ namespace Store.Tests
             var bookRepositoryStub = new Mock<IBookRepository>();
 
             bookRepositoryStub.Setup(x => x.GetAllByIsbn(It.IsAny<string>()))
-                .Returns(new[] { new Book(1, "", "", "") });
+                .Returns(new[] { new Book(1, "", "", "", "", 100m) });
 
             bookRepositoryStub.Setup(x => x.GetAllByTitleOrAuthor(It.IsAny<string>()))
-                .Returns(new[] { new Book(2, "", "", "") });
+                .Returns(new[] { new Book(2, "", "", "", "", 100m) });
 
             var bookService = new BookService(bookRepositoryStub.Object);
             var invalidIsbn = "Ritchie";
@@ -53,12 +53,12 @@ namespace Store.Tests
 
             bookRepository.ResultOfGetAllByIsbn = new[]
             {
-                new Book(idOfIsbnSearch, "", "", ""),
+                new Book(idOfIsbnSearch, "", "", "", "", 100m),
             };
 
             bookRepository.ResultOfGetAllByTitleOrAuthor = new[]
             {
-                new Book(idOfAuthorSearch, "", "", ""),
+                new Book(idOfAuthorSearch, "", "", "", "", 100m),
             };
 
             var bookService = new BookService(bookRepository);
@@ -78,12 +78,12 @@ namespace Store.Tests
 
             bookRepository.ResultOfGetAllByIsbn = new[]
             {
-                new Book(idOfIsbnSearch, "", "", ""),
+                new Book(idOfIsbnSearch, "", "", "", "", 100m),
             };
 
             bookRepository.ResultOfGetAllByTitleOrAuthor = new[]
             {
-                new Book(idOfAuthorSearch, "", "", ""),
+                new Book(idOfAuthorSearch, "", "", "", "", 100m),
             };
 
             var bookService = new BookService(bookRepository);
