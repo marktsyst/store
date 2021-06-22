@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Store.Memory
@@ -18,6 +19,15 @@ namespace Store.Memory
                      14.98m),
         };
 
+        public Book[] GetAllByIds(IEnumerable<int> bookIds)
+        {
+            var foundBooks = from book in books
+                             join bookId in bookIds on book.Id equals bookId
+                             select book;
+
+            return foundBooks.ToArray();
+        }
+
         public Book[] GetAllByIsbn(string isbn)
         {
             return books.Where(book => book.Isnb == isbn)
@@ -27,7 +37,7 @@ namespace Store.Memory
         public Book[] GetAllByTitleOrAuthor(string titlePart)
         {
             return books.Where(book => book.Author.Contains(titlePart)
-                                    || book.Title.Contains(titlePart))
+                                    || book.Title.Contains(titlePart,))
                         .ToArray();
         }
 
