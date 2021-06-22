@@ -37,7 +37,7 @@ namespace Store.Memory
         public Book[] GetAllByTitleOrAuthor(string titlePart)
         {
             return books.Where(book => book.Author.Contains(titlePart)
-                                    || book.Title.Contains(titlePart))
+                                    || book.Title.Contains(titlePart,))
                         .ToArray();
         }
 
